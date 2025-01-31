@@ -1,23 +1,30 @@
-<div class="kategorien-container">
-  <h2>Kategorien-Liste</h2>
+<div class="category-list-container">
   <p *ngIf="message">{{ message }}</p>
 
-  <table *ngIf="categories.length > 0; else keineKategorien" class="categories-table">
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let category of categories">
-      <td>{{ category.id }}</td>
-      <td>{{ category.name }}</td>
-    </tr>
-    </tbody>
+  <table mat-table [dataSource]="categories" class="mat-elevation-z8" *ngIf="categories.length > 0; else noCategories">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let category">{{ category.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let category">{{ category.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Aktionen</th>
+      <td mat-cell *matCellDef="let category">
+        <button mat-button color="primary" (click)="editCategory(category.id)">Bearbeiten</button>
+        <button mat-button color="warn" (click)="deleteCategory(category.id)">Löschen</button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <ng-template #keineKategorien>
-    <p>Keine Kategorien gefunden!</p>
+  <ng-template #noCategories>
+    <p>Keine Kategorien gefunden.</p>
   </ng-template>
 </div>

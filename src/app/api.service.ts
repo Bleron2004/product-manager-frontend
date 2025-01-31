@@ -10,98 +10,64 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
-  /**
-   * Registrierung eines neuen Benutzers
-   * @param data Registrierungsdaten
-   * @returns Observable mit der API-Antwort
-   */
-  register(data: {
-    email: string;
-    password: string;
-    firstName: string;
-    lastName: string;
-    street: string;
-    zip: string;
-    city: string;
-    country: string;
-    phone: string;
-    mobilePhone: string;
-  }): Observable<any> {
+  private getAuthHeaders(): HttpHeaders {
+    const token = localStorage.getItem('token');
+    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+  }
+
+  register(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/register`, data);
   }
 
-  /**
-   * Benutzer login
-   * @param email Benutzer-E-Mail
-   * @param password Benutzer-Passwort
-   * @returns Observable mit der API-Antwort
-   */
   login(email: string, password: string): Observable<any> {
     return this.http.post(`${this.apiUrl}/users/login`, { email, password });
   }
 
-  /**
-   *  Kategorien ansehen (dropdown)
-   * @returns Observable mit der Kategorienliste
-   */
   getCategories(): Observable<any[]> {
-    const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.apiUrl}/categories`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}/categories`, { headers: this.getAuthHeaders() });
   }
 
-  /**
-   * Abrufem von den produkten
-   * @returns Observable mit der Produktliste
-   */
+  getCategoryById(categoryId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/categories/${categoryId}`, { headers: this.getAuthHeaders() });
+  }
+
+  updateCategory(category: { id: number; name: string }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/categories/${category.id}`, category, { headers: this.getAuthHeaders() });
+  }
+
+  deleteCategory(categoryId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/categories/${categoryId}`, { headers: this.getAuthHeaders() });
+  }
+
   getProducts(): Observable<any[]> {
-    const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.apiUrl}/products`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}/products`, { headers: this.getAuthHeaders() });
   }
 
-  /**
-   * Abrufen der benutzerliste
-   * @returns Observable mit der Benutzerliste
-   */
+  getProductById(productId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products/${productId}`, { headers: this.getAuthHeaders() });
+  }
+
+  updateProduct(product: { id: number; name: string; price: number; image: string }): Observable<any> {
+    return this.http.put(`${this.apiUrl}/products/${product.id}`, product, { headers: this.getAuthHeaders() });
+  }
+
+  deleteProduct(productId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/products/${productId}`, { headers: this.getAuthHeaders() });
+  }
+
   getUsers(): Observable<any[]> {
-    const headers = this.getAuthHeaders();
-    return this.http.get<any[]>(`${this.apiUrl}/users`, { headers });
+    return this.http.get<any[]>(`${this.apiUrl}/users`, { headers: this.getAuthHeaders() });
   }
 
-  /**
-   * Benutzer zu Admin machen
-   * @param userId ID des Benutzers
-   * @returns Observable mit der API-Antwort
-   */
   promoteUserToAdmin(userId: number): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${this.apiUrl}/users/${userId}/promote`, {}, { headers });
+    return this.http.post(`${this.apiUrl}/users/${userId}/promote`, {}, { headers: this.getAuthHeaders() });
   }
 
-  /**
-   * Produkt erstellen
-   * @param product Produktdetails
-   * @returns Observable mit der API-Antwort
-   */
   createProduct(product: { name: string; price: number; image: string }): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${this.apiUrl}/products`, product, { headers });
+    return this.http.post(`${this.apiUrl}/products`, product, { headers: this.getAuthHeaders() });
   }
 
-  /**
-   * Kategorie erstellen
-   * @param category Kategoriename
-   * @returns Observable mit der API-Antwort
-   */
   createCategory(category: { name: string }): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${this.apiUrl}/categories`, category, { headers });
-  }
-
-  /**
-   * Hilfsmethode: Authentifizierungs-Header generieren
-   */
-  private getAuthHeaders(): HttpHeaders {
-    const token = localStorage.getItem('token');
-    return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+    return this.http.post(`${this.apiUrl}/categories`, category, { headers: this.getAuthHeaders() });
   }
 }

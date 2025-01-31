@@ -1,0 +1,22 @@
+<div class="edit-product-container">
+  <h1>Produkt bearbeiten</h1>
+  <form (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <mat-label>Produktname</mat-label>
+      <input matInput [(ngModel)]="product.name" name="name" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Preis</mat-label>
+      <input matInput type="number" [(ngModel)]="product.price" name="price" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Bild-URL</mat-label>
+      <input matInput [(ngModel)]="product.image" name="image" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">Speichern</button>
+    <button mat-raised-button color="warn" type="button" (click)="onDelete()">Löschen</button>
+  </form>
+</div>

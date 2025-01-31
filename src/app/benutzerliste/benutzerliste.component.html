@@ -1,0 +1,34 @@
+<div class="user-list-container">
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Vorname</th>
+      <th>Nachname</th>
+      <th>Email</th>
+      <th>Admin</th>
+      <th>Aktionen</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.isAdmin ? 'Ja' : 'Nein' }}</td>
+      <td>
+        <button
+          mat-raised-button
+          color="primary"
+          *ngIf="!user.isAdmin"
+          (click)="promoteToAdmin(user.id)"
+        >
+          Zum Admin machen
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<p *ngIf="message" class="message">{{ message }}</p>

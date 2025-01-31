@@ -1,0 +1,26 @@
+.user-list-container {
+  max-height: 400px; /* Maximale Höhe für den Container */
+  overflow-y: auto; /* Vertikales Scrollen aktivieren */
+  border: 1px solid #ddd; /* Optional: Rahmen hinzufügen */
+  padding: 10px; /* Optional: Padding für etwas Abstand */
+  border-radius: 8px; /* Optional: Abgerundete Ecken */
+  background-color: #f9f9f9; /* Optional: Hintergrundfarbe */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+  position: sticky; /* Kopfzeile fixieren */
+  top: 0;
+  z-index: 1;
+}

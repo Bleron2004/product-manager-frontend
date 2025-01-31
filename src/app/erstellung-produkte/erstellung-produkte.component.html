@@ -1,0 +1,16 @@
+<div class="erstellung-produkte-container">
+  <h2>Produkt erstellen</h2>
+  <form (submit)="createProduct()">
+    <label for="name">Produktname:</label>
+    <input id="name" [(ngModel)]="name" name="name" required />
+
+    <label for="price">Preis:</label>
+    <input id="price" [(ngModel)]="price" name="price" type="number" required />
+
+    <label for="image">Bild-URL:</label>
+    <input id="image" [(ngModel)]="image" name="image" required />
+
+    <button type="submit">Erstellen</button>
+  </form>
+  <p *ngIf="message">{{ message }}</p>
+</div>

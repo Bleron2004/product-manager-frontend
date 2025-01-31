@@ -1,0 +1,10 @@
+<div class="erstellung-kategorie-container">
+  <h2>Kategorie erstellen</h2>
+  <form (submit)="createCategory()">
+    <label for="name">Kategoriename:</label>
+    <input id="name" [(ngModel)]="name" name="name" required />
+
+    <button type="submit">Erstellen</button>
+  </form>
+  <p *ngIf="message">{{ message }}</p>
+</div>

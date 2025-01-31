@@ -1,0 +1,27 @@
+<div class="product-list-container">
+  <p *ngIf="message">{{ message }}</p>
+
+  <table mat-table [dataSource]="products" class="mat-elevation-z8" *ngIf="products.length > 0; else noProducts">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let product">{{ product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Preis</th>
+      <td mat-cell *matCellDef="let product">{{ product.price | currency:'EUR' }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <ng-template #noProducts>
+    <p>Keine Produkte gefunden.</p>
+  </ng-template>
+</div>

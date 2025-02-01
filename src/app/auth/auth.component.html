@@ -3,46 +3,71 @@
   <form (ngSubmit)="onSubmit()">
     <mat-form-field appearance="fill">
       <mat-label>E-Mail</mat-label>
-      <input matInput [(ngModel)]="email" name="email" required />
+      <input
+        matInput
+        [(ngModel)]="email"
+        name="email"
+        required
+        [class.invalid]="!isEmailValid()"
+        (ngModelChange)="validateEmail()"
+      />
+      <mat-error *ngIf="!isEmailValid()">E-Mail muss ein &#64; enthalten</mat-error>
     </mat-form-field>
+
     <mat-form-field appearance="fill">
       <mat-label>Passwort</mat-label>
-      <input matInput type="password" [(ngModel)]="password" name="password" required />
+      <input
+        matInput
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+      />
     </mat-form-field>
+
     <div *ngIf="!isLoginMode">
       <mat-form-field appearance="fill">
         <mat-label>Vorname</mat-label>
-        <input matInput [(ngModel)]="firstName" name="firstName" required />
+        <input matInput [(ngModel)]="firstName" name="firstName" required/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Nachname</mat-label>
-        <input matInput [(ngModel)]="lastName" name="lastName" required />
+        <input matInput [(ngModel)]="lastName" name="lastName" required/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Straße</mat-label>
-        <input matInput [(ngModel)]="street" name="street" required />
+        <input matInput [(ngModel)]="street" name="street" required/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Postleitzahl</mat-label>
-        <input matInput [(ngModel)]="zip" name="zip" required />
+        <input matInput [(ngModel)]="zip" name="zip" required/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Stadt</mat-label>
-        <input matInput [(ngModel)]="city" name="city" required />
+        <input matInput [(ngModel)]="city" name="city" required/>
       </mat-form-field>
       <mat-form-field appearance="fill">
-        <mat-label>Land</mat-label>
-        <input matInput [(ngModel)]="country" name="country" required />
+        <mat-label>Land (Abkürzung z. B. CH)</mat-label>
+        <input
+          matInput
+          [(ngModel)]="country"
+          name="country"
+          required
+          maxlength="2"
+          (ngModelChange)="validateCountry()"
+        />
+        <mat-error *ngIf="!isCountryValid()">Maximal 2 Zeichen erlaubt</mat-error>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Telefon</mat-label>
-        <input matInput [(ngModel)]="phone" name="phone" />
+        <input matInput [(ngModel)]="phone" name="phone"/>
       </mat-form-field>
       <mat-form-field appearance="fill">
         <mat-label>Mobiltelefon</mat-label>
-        <input matInput [(ngModel)]="mobilePhone" name="mobilePhone" required />
+        <input matInput [(ngModel)]="mobilePhone" name="mobilePhone" required/>
       </mat-form-field>
     </div>
+
     <button mat-raised-button color="primary" type="submit">
       {{ isLoginMode ? 'Login' : 'Registrieren' }}
     </button>
@@ -52,4 +77,3 @@
   </button>
   <p *ngIf="message">{{ message }}</p>
 </div>
-wee

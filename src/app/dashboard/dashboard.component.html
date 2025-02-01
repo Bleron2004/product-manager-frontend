@@ -1,23 +1,7 @@
 <mat-toolbar color="primary">
-  <span>Dashboard</span>
-  <span class="spacer"></span>
-
-  <button mat-button [matMenuTriggerFor]="productsMenu">Produkte</button>
-  <mat-menu #productsMenu="matMenu">
-    <button mat-menu-item (click)="navigateToProductList()">Produkte Liste</button>
-    <button mat-menu-item (click)="navigateToProductCreation()">Produkte erstellen</button>
-  </mat-menu>
-
-  <button mat-button [matMenuTriggerFor]="categoriesMenu">Kategorien</button>
-  <mat-menu #categoriesMenu="matMenu">
-    <button mat-menu-item (click)="navigateToCategoryList()">Kategorien Liste</button>
-    <button mat-menu-item (click)="navigateToCategoryCreation()">Kategorie erstellen</button>
-  </mat-menu>
-
-  <button mat-button (click)="logout()">Logout</button>
 </mat-toolbar>
 
 <div class="dashboard-content">
   <h1>Willkommen im Dashboard</h1>
-  <p>Wählen Sie eine Option aus der Navigation oben aus.</p>
+  <p>Nutze die Navigation oben, um deine Aktionen auszuführen.</p>
 </div>

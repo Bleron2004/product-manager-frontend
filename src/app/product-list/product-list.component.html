@@ -3,34 +3,42 @@
   <table mat-table [dataSource]="products" class="mat-elevation-z8">
     <!-- Bild -->
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef> Bild </th>
+      <th mat-header-cell *matHeaderCellDef> Bild</th>
       <td mat-cell *matCellDef="let product">
-        <img [src]="product.image" alt="Produktbild" class="product-image" />
+        <img [src]="product.image" alt="Produktbild" class="product-image"/>
       </td>
     </ng-container>
 
     <!-- Name -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let product"> {{ product.name }}</td>
     </ng-container>
 
     <!-- Preis -->
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Preis </th>
-      <td mat-cell *matCellDef="let product"> {{ product.price | currency:'EUR' }} </td>
+      <th mat-header-cell *matHeaderCellDef> Preis</th>
+      <td mat-cell *matCellDef="let product"> {{ product.price | currency:'EUR' }}</td>
+    </ng-container>
+
+    <!-- Kategorie -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Kategorie</th>
+      <td mat-cell *matCellDef="let product">
+        {{ product.category?.name || 'Keine Kategorie' }}
+      </td>
     </ng-container>
 
     <!-- Aktionen -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Aktionen </th>
+      <th mat-header-cell *matHeaderCellDef> Aktionen</th>
       <td mat-cell *matCellDef="let product">
         <button mat-button color="primary" (click)="viewDetails(product.id)">Details</button>
         <button mat-button color="primary" (click)="editProduct(product.id)">Bearbeiten</button>
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="['image', 'name', 'price', 'actions']"></tr>
-    <tr mat-row *matRowDef="let row; columns: ['image', 'name', 'price', 'actions']"></tr>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 </div>

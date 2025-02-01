@@ -10,7 +10,7 @@ import { ApiService } from '../api.service';
   template: `
     <div class="product-details-container">
       <h1>{{ product.name }}</h1>
-      <img [src]="product.image" alt="Produktbild" />
+      <img [src]="product.image" alt="Produktbild"/>
       <p>{{ product.description }}</p>
       <p>Preis: {{ product.price | currency:'EUR' }}</p>
     </div>

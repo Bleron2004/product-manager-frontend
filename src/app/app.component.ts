@@ -1,9 +1,9 @@
-import { Component } from '@angular/core';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
-import { RouterModule, Router } from '@angular/router';
+import {Component} from '@angular/core';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {RouterModule, Router} from '@angular/router';
 
 @Component({
   selector: 'pm-root',
@@ -13,7 +13,7 @@ import { RouterModule, Router } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
-    RouterModule, // Wichtig für RouterLink
+    RouterModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
@@ -21,7 +21,8 @@ import { RouterModule, Router } from '@angular/router';
 export class AppComponent {
   title = 'Glarex';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) {
+  }
 
   logout() {
     localStorage.removeItem('token');

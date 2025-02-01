@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatTableModule } from '@angular/material/table';
-import { MatButtonModule } from '@angular/material/button';
-import { ApiService } from '../api.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {MatTableModule} from '@angular/material/table';
+import {MatButtonModule} from '@angular/material/button';
+import {ApiService} from '../api.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-kategorien',
@@ -17,7 +17,8 @@ export class KategorienComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   message: string = '';
 
-  constructor(private apiService: ApiService, private router: Router) {}
+  constructor(private apiService: ApiService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.loadCategories();

@@ -3,27 +3,27 @@
   <table mat-table [dataSource]="[product]" class="mat-elevation-z8">
     <!-- Bild -->
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef> Bild </th>
+      <th mat-header-cell *matHeaderCellDef> Bild</th>
       <td mat-cell *matCellDef="let product">
-        <img [src]="product.image" alt="Produktbild" class="product-image" />
+        <img [src]="product.image" alt="Produktbild" class="product-image"/>
       </td>
     </ng-container>
 
     <!-- Name -->
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let product"> {{ product.name }} </td>
+      <th mat-header-cell *matHeaderCellDef> Name</th>
+      <td mat-cell *matCellDef="let product"> {{ product.name }}</td>
     </ng-container>
 
     <!-- Preis -->
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Preis </th>
-      <td mat-cell *matCellDef="let product"> {{ product.price | currency:'EUR' }} </td>
+      <th mat-header-cell *matHeaderCellDef> Preis</th>
+      <td mat-cell *matCellDef="let product"> {{ product.price | currency:'EUR' }}</td>
     </ng-container>
 
     <!-- Aktionen -->
     <ng-container matColumnDef="actions">
-      <th mat-header-cell *matHeaderCellDef> Aktionen </th>
+      <th mat-header-cell *matHeaderCellDef> Aktionen</th>
       <td mat-cell *matCellDef="let product">
         <button mat-button color="primary" [routerLink]="['/products/edit', product.id]">
           Bearbeiten

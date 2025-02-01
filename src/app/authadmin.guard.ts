@@ -6,7 +6,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuardAdmin implements CanActivate {
   constructor(private router: Router,
               private matSnackBar: MatSnackBar) {
   }
@@ -20,19 +20,19 @@ export class AuthGuard implements CanActivate {
       try {
         const parsedToken = JSON.parse(atob(token.split('.')[1]));
         const isExpired = parsedToken.exp * 1000 < Date.now();
-        /*
-                const decodedJwt: any = jwtDecode(token);
 
-                if(decodedJwt) {
-                  if(!decodedJwt.roles.includes('admin')) {
-                    // weg navigieren auf weg$
-                    this.matSnackBar.open("Du darfst diese Seite nicht betreten!");
-                    return false;
-                  }
-                  console.log(decodedJwt);
-                  console.log(decodedJwt.roles);
-                }
-        */
+        const decodedJwt: any = jwtDecode(token);
+
+        if (decodedJwt) {
+          if (!decodedJwt.roles.includes('admin')) {
+            //  durch diesen auth. können leute die nicht eingeloggt sind keine sachen bearbeiten
+            this.matSnackBar.open("Du darfst diese Seite nicht betreten!", "OK", {duration: 2000});
+            return false;
+          }
+          console.log(decodedJwt);
+          console.log(decodedJwt.roles);
+        }
+
         if (isExpired) {
           this.router.navigate(['/auth']);
           return false;

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ApiService } from '../api.service';
+import {Component, OnInit} from '@angular/core';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {ApiService} from '../api.service';
 import {NgFor} from '@angular/common';
 
 @Component({
@@ -36,7 +36,8 @@ export class ErstellungProdukteComponent implements OnInit {
   };
   categories: any[] = [];
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+  }
 
   ngOnInit(): void {
     this.fetchCategories();

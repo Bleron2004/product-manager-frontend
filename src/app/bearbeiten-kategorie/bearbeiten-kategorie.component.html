@@ -1,13 +1,15 @@
 <div class="edit-category-container">
   <h2>Kategorie bearbeiten</h2>
   <form (ngSubmit)="onSubmit()">
-    <mat-form-field>
+    <mat-form-field appearance="fill">
       <mat-label>Kategorie Name</mat-label>
-      <input matInput [(ngModel)]="category.name" name="name" required />
+      <input matInput [(ngModel)]="category.name" name="name" required/>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Speichern</button>
-    <button mat-raised-button color="warn" type="button" (click)="onDelete()">Löschen</button>
-    <button mat-button color="warn" routerLink="/kategorien">Abbrechen</button>
+    <div class="button-container">
+      <button mat-raised-button color="primary" type="submit">Speichern</button>
+      <button mat-raised-button color="warn" type="button" (click)="onDelete()">Löschen</button>
+      <button mat-button type="button" color="accent" (click)="onCancel()">Abbrechen</button>
+    </div>
   </form>
 </div>

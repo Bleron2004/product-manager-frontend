@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { ApiService } from '../api.service';
+import {Component} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {CommonModule} from '@angular/common';
+import {ApiService} from '../api.service';
 
 @Component({
   selector: 'app-erstellung-kategorie',
@@ -14,10 +14,11 @@ export class ErstellungKategorieComponent {
   name: string = '';
   message: string = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) {
+  }
 
   createCategory() {
-    const category = { name: this.name, active: true };
+    const category = {name: this.name, active: true};
     this.apiService.createCategory(category).subscribe(
       () => {
         this.message = 'Kategorie erfolgreich erstellt.';

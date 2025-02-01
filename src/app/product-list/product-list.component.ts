@@ -14,7 +14,7 @@ import { ApiService } from '../api.service';
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];
-  displayedColumns: string[] = ['id', 'name', 'price', 'actions'];
+  displayedColumns: string[] = ['image', 'name', 'price', 'actions'];
   message: string = '';
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -37,5 +37,9 @@ export class ProductListComponent implements OnInit {
 
   editProduct(productId: number): void {
     this.router.navigate(['/products/edit', productId]);
+  }
+
+  viewDetails(productId: number): void {
+    this.router.navigate(['/products/details', productId]);
   }
 }

@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table'; // Import hinzugefügt
+import { RouterModule } from '@angular/router'; // RouterModule für routerLink
 
 @Component({
   selector: 'app-bearbeiten-produkt',
@@ -15,7 +17,9 @@ import { MatButtonModule } from '@angular/material/button';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatTableModule,
+    RouterModule
   ],
   templateUrl: './bearbeiten-produkt.component.html',
   styleUrls: ['./bearbeiten-produkt.component.scss'],
@@ -28,6 +32,8 @@ export class BearbeitenProduktComponent implements OnInit {
     image: ''
   };
 
+  originalProduct: any = {};
+
   constructor(
     private apiService: ApiService,
     private route: ActivatedRoute,
@@ -38,7 +44,8 @@ export class BearbeitenProduktComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     this.apiService.getProductById(id).subscribe(
       (data) => {
-        this.product = data;
+        this.product = { ...data }; // Aktuelles Produkt
+        this.originalProduct = { ...data }; // Original speichern
       },
       (error) => {
         console.error('Fehler beim Laden des Produkts:', error);
@@ -72,5 +79,10 @@ export class BearbeitenProduktComponent implements OnInit {
         }
       );
     }
+  }
+
+  onCancel() {
+    this.product = { ...this.originalProduct }; // Änderungen zurücksetzen
+    this.router.navigate(['/products']); // Zurück zur Produktliste
   }
 }

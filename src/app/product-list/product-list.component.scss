@@ -24,5 +24,9 @@ th {
 }
 
 img {
-  border-radius: 4px;
+  max-width: 100px; /* Breite der Bilder */
+  max-height: 100px; /* Höhe der Bilder */
+  object-fit: cover; /* Zuschneiden des Bildes, falls es größer ist */
+  border-radius: 4px; /* Abgerundete Ecken */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }

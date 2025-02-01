@@ -17,7 +17,7 @@ export class ErstellungKategorieComponent {
   constructor(private apiService: ApiService) {}
 
   createCategory() {
-    const category = { name: this.name };
+    const category = { name: this.name, active: true };
     this.apiService.createCategory(category).subscribe(
       () => {
         this.message = 'Kategorie erfolgreich erstellt.';

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Für *ngIf, *ngFor und Pipes
+import { CommonModule } from '@angular/common';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonModule } from '@angular/material/button';
+import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
 
 @Component({
@@ -13,10 +14,10 @@ import { ApiService } from '../api.service';
 })
 export class ProductListComponent implements OnInit {
   products: any[] = [];
-  displayedColumns: string[] = ['id', 'name', 'price'];
+  displayedColumns: string[] = ['id', 'name', 'price', 'actions'];
   message: string = '';
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -32,5 +33,9 @@ export class ProductListComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  editProduct(productId: number): void {
+    this.router.navigate(['/products/edit', productId]);
   }
 }

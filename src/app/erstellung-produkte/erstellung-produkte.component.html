@@ -1,16 +1,50 @@
-<div class="erstellung-produkte-container">
+<div class="product-form">
   <h2>Produkt erstellen</h2>
-  <form (submit)="createProduct()">
-    <label for="name">Produktname:</label>
-    <input id="name" [(ngModel)]="name" name="name" required />
+  <form (ngSubmit)="onSubmit()" #productForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>SKU</mat-label>
+      <input matInput [(ngModel)]="product.sku" name="sku" required />
+    </mat-form-field>
 
-    <label for="price">Preis:</label>
-    <input id="price" [(ngModel)]="price" name="price" type="number" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput [(ngModel)]="product.name" name="name" required />
+    </mat-form-field>
 
-    <label for="image">Bild-URL:</label>
-    <input id="image" [(ngModel)]="image" name="image" required />
+    <mat-form-field appearance="fill">
+      <mat-label>Bild-URL</mat-label>
+      <input matInput [(ngModel)]="product.image" name="image" required />
+    </mat-form-field>
 
-    <button type="submit">Erstellen</button>
+    <mat-form-field appearance="fill">
+      <mat-label>Beschreibung</mat-label>
+      <textarea matInput [(ngModel)]="product.description" name="description" required></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Preis</mat-label>
+      <input matInput type="number" [(ngModel)]="product.price" name="price" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Bestand</mat-label>
+      <input matInput type="number" [(ngModel)]="product.stock" name="stock" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Kategorie</mat-label>
+      <mat-select [(ngModel)]="product.categoryId" name="categoryId" required>
+        <mat-option *ngFor="let category of categories" [value]="category.id">
+          {{ category.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-checkbox [(ngModel)]="product.active" name="active">Aktiv</mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">
+      Erstellen
+    </button>
   </form>
-  <p *ngIf="message">{{ message }}</p>
 </div>
